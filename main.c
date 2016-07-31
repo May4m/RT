@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 16:18:56 by smamba            #+#    #+#             */
-/*   Updated: 2016/07/26 18:01:11 by smamba           ###   ########.fr       */
+/*   Updated: 2016/07/31 15:42:23 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	render(t_spheres *s, t_gui *env)
 	double	xx;
 	double	yy;
 	double	angle;
-	t_ray	*ray;
+	t_ray	ray;
 	t_vec3f	*image;
 	t_vec3f	dir;
 	t_vec3f	*pixel;
@@ -62,9 +62,9 @@ void	render(t_spheres *s, t_gui *env)
 			xx = (2 * ((x++ + 0.5) * (1.0 / WIDTH)) - 1) * angle * ARATIO;
 			yy = (1 - 2 * ((y + 0.5) * (1.0 / HEIGHT))) * angle;
 			dir = new_vec3f(xx, yy, -1);
-			ray = new_hray(new_vec3f(0, 0, 0), normal_vec3f(&dir));
-			*pixel++ = trace_ray(ray, s, 0);
-			free(ray);
+			ray = new_ray(new_vec3f(0, 0, 0), normal_vec3f(&dir));
+			*pixel++ = trace_ray(&ray, s, 0);
+			//free(ray);
 		}
 		y++;
 	}

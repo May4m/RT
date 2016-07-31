@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 16:37:19 by smamba            #+#    #+#             */
-/*   Updated: 2016/07/26 18:05:55 by smamba           ###   ########.fr       */
+/*   Updated: 2016/07/31 15:40:07 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,12 @@ t_sphere	new_sphere(t_vec3f pos, t_color s, t_color e, t_f64 rad, t_f64 r)
 	return (sp);
 }
 
-t_sphere	new_plane(t_vec3f pos, t_color s, t_color e, t_f64 ref)
+t_sphere	new_plane(t_vec3f pos, t_vec3f size, t_color s, t_f64 ref)
 {
 	t_sphere	plane;
 
-	plane = new_object(pos, s, e, 10, ref, PLANE);
+	plane = new_object(pos, s, new_color(0, 0, 0), 10, ref, PLANE);
+	plane.size = size;
 	plane.intersect = plane_intersection;
 	plane.normal = plane_normal;
 	return (plane);

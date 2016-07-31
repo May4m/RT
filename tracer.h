@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 15:14:28 by smamba            #+#    #+#             */
-/*   Updated: 2016/07/26 17:00:16 by smamba           ###   ########.fr       */
+/*   Updated: 2016/07/31 15:24:31 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct	s_sphere
 {
 	t_vec3f		plane_normal;
 	t_vec3f		pos;
+	t_vec3f		size;
 	t_color		scolor;
 	t_color		ecolor;
 	t_f64		transparency;
