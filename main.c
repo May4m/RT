@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 16:18:56 by smamba            #+#    #+#             */
-/*   Updated: 2016/07/31 15:42:23 by smamba           ###   ########.fr       */
+/*   Updated: 2016/07/31 15:46:33 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	render(t_spheres *s, t_gui *env)
 	t_vec3f	dir;
 	t_vec3f	*pixel;
 
-	pixel = image = (t_vec3f*)malloc(sizeof(t_vec3f) * (WIDTH * HEIGHT));
+	image = (t_vec3f*)malloc(sizeof(t_vec3f) * (WIDTH * HEIGHT));
+	pixel = image;
 	y = 0;
 	angle = tan(M_PI * 0.5 * FOV / 200);
 	while (y < HEIGHT && !(x = 0))
@@ -64,14 +65,13 @@ void	render(t_spheres *s, t_gui *env)
 			dir = new_vec3f(xx, yy, -1);
 			ray = new_ray(new_vec3f(0, 0, 0), normal_vec3f(&dir));
 			*pixel++ = trace_ray(&ray, s, 0);
-			//free(ray);
 		}
 		y++;
 	}
 	expose(image, env);
 }
 
-int		main()
+int		main(void)
 {
 	t_gui		gui;
 	t_spheres	*vector;
@@ -82,5 +82,5 @@ int		main()
 	mlx_loop(gui.mlx);
 	free(vector->store);
 	free(vector);
-	return 0;
+	return (0);
 }

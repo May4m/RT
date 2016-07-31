@@ -6,7 +6,7 @@
 #    By: smamba <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/13 13:18:19 by smamba            #+#    #+#              #
-#    Updated: 2016/07/26 15:44:42 by smamba           ###   ########.fr        #
+#    Updated: 2016/07/31 16:00:22 by smamba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,13 @@ NAME = rtv1
 
 all: $(NAME)
 
+$(DEBUG): ARGS = -Wall -Werror -Wextra
+
 $(NAME):
-	gcc $(SRC) -I. -lmlx -framework AppKit -framework OpenGL -o $(NAME)
+	@gcc $(SRC) $(ARGS) -I. -lmlx -framework AppKit -framework OpenGL -o $(NAME)
 
 clean:
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 fclean: clean
 

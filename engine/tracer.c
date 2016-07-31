@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/12 15:35:59 by smamba            #+#    #+#             */
-/*   Updated: 2016/07/26 15:30:44 by smamba           ###   ########.fr       */
+/*   Updated: 2016/07/31 15:50:10 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ extern inline	t_vec3f atrace_back(t_params p, t_ray *ray, t_spheres *sp)
 	t_vec3f	refldir, reflection, refraction;
 	t_color	tmp;
 	t_color	scolor;
-	t_bool	inside;
 	t_ray	rx, ry;
-	t_vec3f	refrdir, temp;
 
 	if (dot_vec3f(&ray->dir, &p.nhit) > 0)
 		p.nhit = scale_vec3f(&p.nhit, -1);
@@ -110,7 +108,6 @@ t_vec3f	trace_ray(t_ray *ray, t_spheres *sp, int depth)
 	double		t0;
 	double		t1;
 	t_params	param;
-	t_sphere	*sr;
 
 	i = 0;
 	param.sphere = NULL;
