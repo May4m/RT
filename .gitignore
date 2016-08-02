@@ -32,9 +32,10 @@
 *.dSYM/
 *.su
 
-#Mac & Recovery files
+# Mac & Recovery files
 .*.swp
 .*.swo
 .*_
 .DS*
 *~
+rtv1

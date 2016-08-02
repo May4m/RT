@@ -14,16 +14,15 @@
 # define TRACER_H
 # define TRUE 1
 # define FALSE 0
-# include <math.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <mlx.h>
-# include "view_matrix.h"
 # define WIDTH 1200
 # define HEIGHT 900
 # define ARATIO WIDTH / (float)HEIGHT
 # define FOV 30
 # define BIAS 1e-4
+# include <math.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <mlx.h>
 
 enum			e_objects
 {
