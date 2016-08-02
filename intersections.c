@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 16:21:06 by smamba            #+#    #+#             */
-/*   Updated: 2016/07/31 15:40:23 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/02 13:47:28 by simzam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,7 @@ t_bool	cone_intersection(t_ray *r, t_sphere *s, t_f64 *t0, t_f64 *t1)
 	{
 		*t0 = (-b + sqrt(radicant)) / (2 * a);
 		*t1 = (-b - sqrt(radicant)) / (2 * a);
+		return (TRUE);
 	}
+	return (FALSE);
 }

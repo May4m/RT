@@ -6,7 +6,7 @@
 #    By: smamba <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/13 13:18:19 by smamba            #+#    #+#              #
-#    Updated: 2016/07/31 16:00:22 by smamba           ###   ########.fr        #
+#    Updated: 2016/08/02 13:51:44 by simzam           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,9 @@ $(DEBUG): ARGS = -Wall -Werror -Wextra
 $(NAME):
 
 ifeq ($(shell) uname, Linux)
-	@gcc $(SRC) $(ARGS) -I. $(MACLIB) -o $(NAME)
-else
 	@gcc $(SRC) $(ARGS) -I. $(LIXLIB) -o $(NAME)
+else
+	@gcc $(SRC) $(ARGS) -I. $(MACLIB) -o $(NAME)
 endif
 
 clean:
