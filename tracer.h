@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <mlx.h>
+# include "view_matrix.h"
 # define WIDTH 1200
 # define HEIGHT 900
 # define ARATIO WIDTH / (float)HEIGHT
