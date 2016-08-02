@@ -27,9 +27,9 @@ $(DEBUG): ARGS = -Wall -Werror -Wextra
 $(NAME):
 
 ifeq ($(shell) uname, Linux)
-	@gcc $(SRC) $(ARGS) -I. $(LIXLIB) -o $(NAME)
-else
 	@gcc $(SRC) $(ARGS) -I. $(MACLIB) -o $(NAME)
+else
+	@gcc $(SRC) $(ARGS) -I. $(LIXLIB) -o $(NAME)
 endif
 
 clean:

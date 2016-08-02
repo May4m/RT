@@ -33,33 +33,36 @@ float	*vec4_2(t_vec3f vec3, float w)
 	return (values);
 }
 
-void	mat4_1(t_vec4 **columns)
+t_vec4	**mat4_1(t_vec4 **columns)
 {
-	t_vec4	*vec4;
 	t_vec3f	vec3;
 	float	w;
 	int		i;
 
-	i = -1;
-	if (!(vec4 = (t_vec4 *)malloc((sizeof(vec4) * 4) + 1)))
-		return ;
+	i = -1; ;
 	while (++i < 4)
-		vec4[i].constructor2 = &vec4_2;
+		(*columns)[i].constructor2 = &vec4_2;
 	w = 0;
-	vec4[0].values = vec4[0].constructor2((t_vec3f){1, 0, 0}, w);
-	vec4[1].values = vec4[1].constructor2((t_vec3f){0, 1, 0}, w);
-	vec4[2].values = vec4[2].constructor2((t_vec3f){0, 0, 1}, w);
-	vec4[3].values = vec4[3].constructor2((t_vec3f){0, 0, 0}, (w = 1));
+	(*columns)[0].values = (*columns)[0].
+	constructor2((t_vec3f){1, 0, 0}, w);
+	(*columns)[1].values = (*columns)[1].
+	constructor2((t_vec3f){0, 1, 0}, w);
+	(*columns)[2].values = (*columns)[2].
+	constructor2((t_vec3f){0, 0, 1}, w);
+	(*columns)[3].values = (*columns)[3].
+	constructor2((t_vec3f){0, 0, 0}, (w = 1));
+	return (columns);
 }
 
-void	mat4_2(t_vec4 **columns, t_vec4 *vec4)
+t_vec4	**mat4_2(t_vec4 **columns, t_vec4 *vec4)
 {
 	if (!columns || !vec4)
-		return ;
+		return (0);
 	columns[0] = &vec4[0];
 	columns[1] = &vec4[1];
 	columns[2] = &vec4[2];
 	columns[3] = &vec4[3];
+	return (columns);
 }
 
 float	to_radians(float degrees)
@@ -69,24 +72,26 @@ float	to_radians(float degrees)
 
 t_mat4	rh_view_cam(t_vec3f eye, float pitch, float yaw)
 {
-	float	cos_pitch;
-	float	sin_pitch;
-	float	cos_yaw;
-	float	sin_yaw;
-	t_vec3f	xaxis;
-	t_vec3f yaxis;
-	t_vec3f zaxis;
-	t_mat4	view_matrix;
-	t_vec3f vec3f;
+	t_cam_params	cam;
 
-	cos_pitch = to_radians(cos(pitch));
-	sin_pitch = to_radians(sin(pitch));
-	cos_yaw = to_radians(cos(yaw));
-	sin_yaw = to_radians(sin(yaw));
-	xaxis = (t_vec3f){cos_yaw, 0, -sin_yaw};
-	yaxis = (t_vec3f){sin_yaw * sin_pitch, cos_pitch, cos_yaw * sin_pitch};
-	zaxis = (t_vec3f){sin_yaw * cos_pitch, -sin_pitch, cos_pitch * cos_yaw};
-	//TODO
-	//Set up the entire matrix from the computed values above and return the view_matrix.
-	return (view_matrix);
+	cam.vmat.columns->constructor2 = &vec4_2;
+	cam.cos_pitch = to_radians(cos(pitch));
+	cam.sin_pitch = to_radians(sin(pitch));
+	cam.cos_yaw = to_radians(cos(yaw));
+	cam.sin_yaw = to_radians(sin(yaw));
+	cam.xaxis = (t_vec3f){cam.cos_yaw, 0, -cam.sin_yaw};
+	cam.yaxis = (t_vec3f){cam.sin_yaw * cam.sin_pitch,
+		cam.cos_pitch, cam.cos_yaw * cam.sin_pitch};
+	cam.zaxis = (t_vec3f){cam.sin_yaw * cam.cos_pitch,
+		-cam.sin_pitch, cam.cos_pitch * cam.cos_yaw};
+	cam.vmat.columns[0].values =  cam.vmat.columns
+		->constructor2((t_vec3f){cam.xaxis.x, cam.yaxis.x, cam.zaxis.x}, 0);
+	cam.vmat.columns[1].values = cam.vmat.columns
+		->constructor2((t_vec3f){cam.xaxis.y, cam.yaxis.y, cam.zaxis.y}, 0);
+	cam.vmat.columns[2].values = cam.vmat.columns
+		->constructor2((t_vec3f){cam.xaxis.z, cam.yaxis.z, cam.zaxis.z}, 0);
+	cam.vmat.columns[3].values = cam.vmat.columns
+		->constructor2((t_vec3f){-dot_vec3f(&cam.xaxis, &eye),
+			-dot_vec3f(&cam.yaxis, &eye), -dot_vec3f(&cam.zaxis, &eye)}, 1);
+	return (cam.vmat);
 }
