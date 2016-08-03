@@ -1,0 +1,88 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tracer.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/07/08 15:14:28 by smamba            #+#    #+#             */
+/*   Updated: 2016/07/31 15:24:31 by smamba           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef TRACER_H
+# define TRACER_H
+# define TRUE 1
+# define FALSE 0
+# include <math.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <mlx.h>
+# define WIDTH 1200
+# define HEIGHT 900
+# define ARATIO WIDTH / (float)HEIGHT
+# define FOV 30
+# define BIAS 1e-4
+
+enum			e_objects
+{
+	SPHERE = 1,
+	CONE = 2,
+	CYLINDER = 3,
+	PLANE = 4,
+	BOX = 4
+};
+
+typedef int		t_bool;
+typedef double	t_f64;
+typedef float	t_f32;
+
+typedef struct	s_gui
+{
+	void	*mlx;
+	void	*win;
+	char	*title;
+	int		width;
+	int		height;
+	int		bpp;
+	int		endian;
+	int		sl;
+	void	*image;
+	char	*pixel;
+}				t_gui;
+
+typedef struct	s_camera
+{
+	t_vec3f	pos;
+	t_vec3f	dir;
+	double	fov;
+}				t_camera;
+
+typedef struct	s_light
+{
+	t_sphere	light;
+}				t_light;
+
+typedef struct	s_params
+{
+	t_ray		*ray;
+	t_vec3f		nhit;
+	t_vec3f		phit;
+	int			depth;
+	double		tnear;
+	t_sphere	*sphere;
+}				t_params;
+
+double			mix(const double a, const double b, const double mix);
+double			ftmin(const double a, const double b);
+double			ftmax(const double a, const double b);
+t_gui			new_gui(int w, int h, char *title);
+void			kill_spheres(t_spheres *sp);
+double			length_vec3f(t_vec3f *vec);
+double			dot_vec3f(t_vec3f *v1, t_vec3f *v2);
+t_bool			sphere_intersection(t_ray *r, t_sphere *s, t_f64 *t, t_f64 *a);
+t_bool			intersect_ray(t_ray *r, t_sphere *s);
+t_bool			solve_quadratic(t_f64 a, t_f64 b, t_f64 c, t_f64 *t0, t_f64 *t1);
+t_bool			cylinder_intersection(t_ray *r, t_sphere *s, t_f64 *t0, t_f64 *t1);
+t_bool			plane_intersection(t_ray *r, t_sphere *s, t_f64 *t0, t_f64 *t1);
+#endif
