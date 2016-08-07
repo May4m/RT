@@ -2,7 +2,7 @@
 #ifndef ENGINE_H
 # define ENGINE_H
 # include "tracer.h"
-# define MAX_RAY_DEPTH 5
+# define MAX_RAY_DEPTH 10
 
 t_vec3f		get_reflection_dir(t_vec3f *nhit, t_vec3f *dir);
 t_ray		reflected_ray(t_ray *r, t_vec3f *d, t_vec3f *n, t_vec3f *p);

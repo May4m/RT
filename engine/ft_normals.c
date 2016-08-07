@@ -31,6 +31,11 @@ t_vec3f	cylinder_normal(t_vec3f *phit, t_vec3f *pos)
 
 t_vec3f	plane_normal(t_vec3f *phit, t_vec3f *pos)
 {
-	(void)phit;
-	return (normal_vec3f(pos));
+	t_vec3f	nhit;
+
+	nhit = dup_vec3f(pos);
+	nhit.z = nhit.z < 0 ? -1 : (nhit.z > 0 ? 1 : 0);
+	nhit.x = nhit.x < 0 ? -1 : (nhit.x > 0 ? 1 : 0);
+	nhit.y = nhit.y < 0 ? -1 : (nhit.y > 0 ? 1 : 0);
+	return (nhit);
 }

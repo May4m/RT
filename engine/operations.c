@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operations.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/08/07 13:35:45 by smamba            #+#    #+#             */
+/*   Updated: 2016/08/07 13:36:53 by smamba           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "tracer.h"
 
-t_ray	refracted_ray(t_ray *ray, t_vec3f *rd,
+t_ray		refracted_ray(t_ray *ray, t_vec3f *rd,
 		t_vec3f *nhit, t_vec3f *phit)
 {
 	t_ray	rx;
@@ -13,17 +24,15 @@ t_ray	refracted_ray(t_ray *ray, t_vec3f *rd,
 	return (rx);
 }
 
-t_color compute_ideal_refractions(t_ray *r, t_bool inside, t_params p)
+t_color		compute_ideal_refractions(t_ray *r, t_bool inside, t_params p)
 {
 	t_vec3f	refrac_dir;
 	t_vec3f	tmp;
-	t_f64	ior;
 	t_f64	eta;
 	t_f64	cosi;
 	t_f64	k;
 
-	ior = 1.1;
-	eta = (inside) ? (ior) : (1 / ior);
+	eta = (inside) ? (1.1) : (1 / 1.1);
 	cosi = -dot_vec3f(&p.nhit, &r->dir);
 	k = 1 - eta * eta * (1 - cosi * cosi);
 	refrac_dir = scale_vec3f(&p.nhit, eta * cosi - sqrt(k));
@@ -32,7 +41,7 @@ t_color compute_ideal_refractions(t_ray *r, t_bool inside, t_params p)
 	return (normal_vec3f(&refrac_dir));
 }
 
-t_vec3f			get_reflection_dir(t_vec3f *nhit, t_vec3f *dir)
+t_vec3f		get_reflection_dir(t_vec3f *nhit, t_vec3f *dir)
 {
 	t_vec3f	ref_dir;
 
@@ -42,7 +51,7 @@ t_vec3f			get_reflection_dir(t_vec3f *nhit, t_vec3f *dir)
 	return (ref_dir);
 }
 
-t_ray			reflected_ray(t_ray *ray, t_vec3f *rd,
+t_ray		reflected_ray(t_ray *ray, t_vec3f *rd,
 		t_vec3f *nhit, t_vec3f *phit)
 {
 	t_ray	rx;

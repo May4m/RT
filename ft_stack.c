@@ -12,7 +12,7 @@
 
 #include "tracer.h"
 
-t_objects	*new_spheres(int size)
+t_objects	*new_stack(int size)
 {
 	t_objects	*cap;
 
@@ -30,7 +30,7 @@ t_objects	*new_spheres(int size)
 	return (cap);
 }
 
-t_objects	*push_sphere(t_objects *sps, t_object *s)
+t_objects	*push_object(t_objects *sps, t_object *s)
 {
 	if (sps == NULL)
 		return (NULL);
@@ -46,8 +46,12 @@ t_object	get_object(t_objects *s, int idx)
 	return (s->store[idx]);
 }
 
-void		kill_spheres(t_objects *sp)
+void		kill_stack(t_objects **sp)
 {
 	if (sp != NULL)
-		free(sp);
+	{
+		free((*sp)->store);
+		free(*sp);
+		*sp = NULL;	
+	}
 }

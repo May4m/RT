@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tracer.h"
+#include "vector.h"
 
 double	length_vec3f(t_vec3f *vec)
 {

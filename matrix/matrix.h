@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector.c                                        :+:      :+:    :+:   */
+/*   matrix.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/08 16:18:01 by smamba            #+#    #+#             */
-/*   Updated: 2016/07/21 12:40:03 by smamba           ###   ########.fr       */
+/*   Created: 2016/08/07 14:11:31 by smamba            #+#    #+#             */
+/*   Updated: 2016/08/07 14:24:36 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#ifndef MATRIX_H
+# define MATRIX_H
+# include <vector.h>
 
-t_vec3f	new_vec3f(double x, double y, double z)
+typedef struct		s_matrix
 {
-	t_vec3f	p;
+	t_f64		**mat;
+	t_i32		rows;
+	t_i32		cols;
+}					t_matrix;
 
-	p.x = x;
-	p.y = y;
-	p.z = z;
-	return (p);
-}
+typedef t_matrix	t_matrix44;
 
-t_vec3f	cpy_vec3f(t_vec3f *dest, t_vec3f *src)
-{
-	dest->x = src->x;
-	dest->y = src->y;
-	dest->z = src->z;
-	return (*dest);
-}
-
-t_vec3f	dup_vec3f(t_vec3f *src)
-{
-	t_vec3f	dest;
-
-	dest.x = src->x;
-	dest.y = src->y;
-	dest.z = src->z;
-	return (dest);
-}
+t_matrix44			new_mat44(t_f64 dvalue);
+t_vec3f				vector_multiply(t_vec3f *v, t_matrix44 *m);
+#endif
