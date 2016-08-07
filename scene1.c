@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/31 14:30:48 by smamba            #+#    #+#             */
-/*   Updated: 2016/08/07 14:41:02 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/07 18:01:11 by simzam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_objects	*scene_one()
 								new_vec3f(100, 7, 0),
 								new_color(1, 1, 1),
 								TRUE);
-	sp6.mirror = TRUE;	
+	sp6.mirror = TRUE;
 	t_object	sp5 = new_sphere(new_vec3f(-5.5 - 2, 0, -15 - 5),
 								new_color(.99, .99, .99),
 								new_color(0.0, 0.0, 0.0),

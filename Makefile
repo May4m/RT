@@ -6,7 +6,7 @@
 #    By: smamba <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/13 13:18:19 by smamba            #+#    #+#              #
-#    Updated: 2016/08/07 13:19:52 by smamba           ###   ########.fr        #
+#    Updated: 2016/08/07 17:38:44 by simzam           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,11 @@ all: $(NAME)
 $(DEBUG): ARGS = -Wall -Werror -Wextra
 
 $(NAME):
+ifeq ($(shell) uname, Linux)
+	@gcc $(SRC) $(ARGS) -I. -I vector -lmlx -lm -o $(NAME)
+else
 	@gcc $(SRC) $(ARGS) -I. -framework AppKit -framework OpenGL -I vector -lmlx -lm -o $(NAME)
-
+endif
 clean:
 	@rm -f $(NAME)
 

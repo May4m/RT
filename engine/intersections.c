@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 16:21:06 by smamba            #+#    #+#             */
-/*   Updated: 2016/07/31 15:40:23 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/07 18:18:59 by simzam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,29 @@ t_bool	sphere_intersection(t_ray *r, t_object *s, double *t0, double *t1)
 	thc = sqrt(s->radius * s->radius - d2);
 	*t0 = tca - thc;
 	*t1 = tca + thc;
+	return (TRUE);
+}
+
+t_bool	cone_intersections(t_ray *r, t_object *s, double *t0, double *t1)
+{
+	t_f64	a;
+	t_f64	b;
+	t_f64	c;
+	t_f64	z;
+	t_f64	radicant;
+
+	z = 0.5 * r->dir.z;
+	a = pow(r->dir.x, 2) + pow(r->dir.y, 2) - pow(z, 2);
+	b = 2 * (s->pos.x * r->dir.x + s->pos.y * r->dir.y - s->pos.z * z);
+	c = pow(s->pos.x, 2) + pow(s->pos.y, 2) - pow(s->pos.z, 2);
+	radicant = pow(b, 2) - 4 * a * c;
+	if (radicant < 0)
+	{
+		*t0 = -1;
+		*t1 = -1;
+		return (FALSE);
+	}
+	*t0 = (-b + sqrt(radicant)) / (2 * a);
+	*t1 = (-b - sqrt(radicant)) / (2 * a);
 	return (TRUE);
 }

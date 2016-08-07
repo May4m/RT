@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 13:20:22 by smamba            #+#    #+#             */
-/*   Updated: 2016/07/17 17:26:54 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/07 18:26:47 by simzam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ t_objects	*new_stack(int size)
 {
 	t_objects	*cap;
 
-	cap = (t_objects*)malloc(sizeof(t_objects));
-	if (cap == NULL)
+	if (!(cap = (t_objects*)malloc(sizeof(t_objects))) || size <= 0)
 		return (NULL);
-	cap->store = (t_object*)malloc(sizeof(t_object) * size);
-	if (cap->store == NULL)
+	if(!(cap->store = (t_object*)malloc(sizeof(t_object) * size)))
 	{
 		free(cap);
 		return (NULL);
@@ -32,7 +30,7 @@ t_objects	*new_stack(int size)
 
 t_objects	*push_object(t_objects *sps, t_object *s)
 {
-	if (sps == NULL)
+	if (!sps|| !s)
 		return (NULL);
 	if (!(sps->top < sps->size))
 		return (NULL);
@@ -48,7 +46,7 @@ t_object	get_object(t_objects *s, int idx)
 
 void		kill_stack(t_objects **sp)
 {
-	if (sp != NULL)
+	if (sp && *sp)
 	{
 		free((*sp)->store);
 		free(*sp);
