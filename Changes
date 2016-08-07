@@ -1,0 +1,15 @@
+
+I've created new tyepdef data types..
+  * int is now replaced by t_i32;
+  * double is now replaced by t_f32;
+  * double is now replaced by t_f64;
+  * boolean varibales are define by t_bool;
+
+
+Yay!!!!!! The matrix library is here.... I mean coming.
+
+ * A t_f64 matrix of an arbitrary size if defined by 't_matrix'
+ * A t_f64 matrix of size 4x4 is defined by 't_matrix44'
+ * Matrices just like vectors work on a stack... I generally use small matrices atmost 4x4
+ * Matrices can work with vectors... yea.. the t_vec3f.
+ * Only the essential part of the matrix library is implemented.
