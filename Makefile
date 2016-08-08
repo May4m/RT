@@ -6,7 +6,7 @@
 #    By: smamba <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/13 13:18:19 by smamba            #+#    #+#              #
-#    Updated: 2016/08/07 13:19:52 by smamba           ###   ########.fr        #
+#    Updated: 2016/08/08 15:13:56 by smamba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ SRC = main.c \
 	  engine/shading_model.c \
 	  engine/core.c \
 	  engine/intersections.c \
-	  engine/ft_normals.c
+	  engine/ft_normals.c \
+	  matrix/ft_matrix.c \
+	  matrix/ft_matrix_ops.c \
 
 NAME = rtv1
 
@@ -29,7 +31,7 @@ all: $(NAME)
 $(DEBUG): ARGS = -Wall -Werror -Wextra
 
 $(NAME):
-	@gcc $(SRC) $(ARGS) -I. -framework AppKit -framework OpenGL -I vector -lmlx -lm -o $(NAME)
+	@gcc $(SRC) $(ARGS) -I. -framework AppKit -framework OpenGL -I vector -lmlx -lm -o $(NAME) -I matrix/
 
 clean:
 	@rm -f $(NAME)

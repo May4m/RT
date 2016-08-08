@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/31 14:30:48 by smamba            #+#    #+#             */
-/*   Updated: 2016/08/07 14:41:02 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/07 16:38:07 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_objects	*scene_one()
 								 new_color(0.65, 0.77, 0.97),
 								 new_color(0.0, 0.0, 0.0),
 								 3, TRUE);
-	t_object	sp6 =  new_plane(new_vec3f(0, 0, -30),
+	t_object	sp6 =  new_plane(new_vec3f(0, 0, -35),
 								new_vec3f(100, 7, 0),
 								new_color(1, 1, 1),
 								TRUE);

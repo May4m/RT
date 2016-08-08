@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 16:18:56 by smamba            #+#    #+#             */
-/*   Updated: 2016/08/07 13:53:04 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/08 15:14:58 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	render(t_objects *s, t_gui *env)
 	t_ray	ray;
 	t_vec3f	*image;
 	t_vec3f	dir;
+	t_vec3f	origin;
 	t_vec3f	*pixel;
 
 	image = (t_vec3f*)malloc(sizeof(t_vec3f) * (WIDTH * HEIGHT));
@@ -59,10 +60,11 @@ void	render(t_objects *s, t_gui *env)
 	{
 		while (x < WIDTH)
 		{
+			origin = new_vec3f(0, 0, 0);
 			xx = (2 * ((x++ + 0.5) * (1.0 / WIDTH)) - 1) * angle * ARATIO;
-			yy = (-.7 - 2 * ((y + 0.5) * (1.0 / HEIGHT))) * angle;
+			yy = (1 - 2 * ((y + 0.5) * (1.0 / HEIGHT))) * angle;
 			dir = new_vec3f(xx, yy, -1);
-			ray = new_ray(new_vec3f(0, 14, 15), normal_vec3f(&dir));
+			ray = new_ray(origin, normal_vec3f(&dir));
 			*pixel++ = trace_ray(&ray, s, 0);
 		}
 		y++;
@@ -75,7 +77,6 @@ int		main(void)
 {
 	t_gui		gui;
 	t_objects	*vector;
-
 	vector = scene_one();
 	gui = new_gui(WIDTH, HEIGHT, "Ray tracer");
 	render(vector, &gui);

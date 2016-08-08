@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 15:14:28 by smamba            #+#    #+#             */
-/*   Updated: 2016/08/07 13:52:46 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/07 16:54:33 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define TRACER_H
 # define TRUE 1
 # define FALSE 0
-# include <vector.h>
+# include <matrix.h>
 # include <math.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -73,7 +73,7 @@ typedef struct	s_sphere
 	int			type;
 }				t_object;
 
-typedef struct	s_spheres
+typedef struct	s_objects
 {
 	int			top;
 	t_object	*store;
@@ -82,9 +82,8 @@ typedef struct	s_spheres
 
 typedef struct	s_camera
 {
-	t_vec3f	pos;
-	t_vec3f	dir;
-	double	fov;
+	t_matrix	view;
+	t_f64		fov;
 }				t_camera;
 
 typedef struct	s_light
@@ -132,4 +131,6 @@ t_bool			solve_quadratic(t_f64 a, t_f64 b, t_f64 c, t_f64 *u, t_f64 *v);
 t_bool			cylinder_intersection(t_ray *r, t_object *s,
 		t_f64 *u, t_f64 *v);
 t_bool			plane_intersection(t_ray *r, t_object *s, t_f64 *t0, t_f64 *t1);
+t_camera		new_camera(t_matrix44 m, t_f64 fov);
+void			kill_camera(t_camera *m);
 #endif

@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/12 15:41:57 by smamba            #+#    #+#             */
-/*   Updated: 2016/07/21 12:40:44 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/07 17:50:45 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 double	length_vec3f(t_vec3f *vec)
 {
 	return (sqrtf(dot_vec3f(vec, vec)));
+}
+
+t_vec3f	normalize_vec3f(t_vec3f vec)
+{
+	return (normal_vec3f(&vec));
 }
 
 t_vec3f	normal_vec3f(t_vec3f *vec)

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vector.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/08/07 16:46:23 by smamba            #+#    #+#             */
+/*   Updated: 2016/08/07 17:49:57 by smamba           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef VECTOR_H
 # include <math.h>
@@ -29,6 +40,7 @@ t_vec3f			mat_vec3f(t_vec3f *v1, t_vec3f *t1);
 t_vec3f			add_vec3f(t_vec3f *v1, t_vec3f *v2);
 t_vec3f			sub_vec3f(t_vec3f *v1, t_vec3f *v2);
 t_vec3f			normal_vec3f(t_vec3f *vec);
+t_vec3f			normalize_vec3f(t_vec3f vec);
 t_vec3f			scale_vec3f(t_vec3f *s, t_f64 scale);
 t_vec3f			cross_vec3f(t_vec3f *v1, t_vec3f *v2);
 t_f64			length_vec3f(t_vec3f *vec);
