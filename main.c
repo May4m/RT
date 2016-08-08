@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 16:18:56 by smamba            #+#    #+#             */
-/*   Updated: 2016/08/07 13:53:04 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/07 17:58:46 by simzam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,18 @@ void	expose(t_vec3f *a, t_gui *gui)
 	int	pos;
 
 	x = 0;
-	y = 0;
-	i = 0;
-	while (y < HEIGHT)
+	y = -1;
+	i = -1;
+	while (++y < HEIGHT)
 	{
-		x = 0;
-		while (x < WIDTH)
+		x = -1;
+		while (++x < WIDTH)
 		{
 			pos = (x * gui->bpp / 8) + (y * gui->sl);
-			gui->pixel[pos] = (unsigned char)(ftmin((t_f64)1.0, a[i].z) * 255);
+			gui->pixel[pos] = (unsigned char)(ftmin((t_f64)1.0, a[++i].z) * 255);
 			gui->pixel[pos + 1] = (unsigned char)(ftmin((t_f64)1.0, a[i].y) * 255);
 			gui->pixel[pos + 2] = (unsigned char)(ftmin((t_f64)1.0, a[i].x) * 255);
-			i++;
-			x++;
 		}
-		y++;
 	}
 	mlx_put_image_to_window(gui->mlx, gui->win, gui->image, 0, 0);
 }

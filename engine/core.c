@@ -103,7 +103,7 @@ t_vec3f	trace_ray(t_ray *ray, t_objects *sp, int depth)
 	param = get_closest_primitive(ray, sp);
 	param.depth = depth;
 	if (param.sphere == NULL)
-		return (new_uni_color(3));
+		return (new_uni_color(2.5));
 	param.phit = scale_vec3f(&ray->dir, param.tnear);
 	param.phit = add_vec3f(&ray->origin, &param.phit);
 	param.nhit = param.sphere->normal(&param.phit, &param.sphere->pos);

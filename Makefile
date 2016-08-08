@@ -6,7 +6,7 @@
 #    By: smamba <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/13 13:18:19 by smamba            #+#    #+#              #
-#    Updated: 2016/08/07 13:19:52 by smamba           ###   ########.fr        #
+#    Updated: 2016/08/08 12:52:00 by simzam           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,13 +24,26 @@ SRC = main.c \
 
 NAME = rtv1
 
+CC = gcc
+
+INC = -I /usr/include/X11
+
+LIXLIB = -L/usr/lib/X11 -lmlx -lXext -lX11 -lm
+
+MACLIB = -framework AppKit -framework OpenGL -lmlx -lm
+
+VECTOR = -I. -I vector
+
 all: $(NAME)
 
 $(DEBUG): ARGS = -Wall -Werror -Wextra
 
 $(NAME):
-	@gcc $(SRC) $(ARGS) -I. -framework AppKit -framework OpenGL -I vector -lmlx -lm -o $(NAME)
-
+ifeq ($(shell) uname, Linux)
+		@$(CC) $(ARGS) $(SRC) $(VECTOR) $(INC) $(LIXLIB) -o $(NAME)
+else
+		@$(CC) $(ARGS) $(SRC) $(VECTOR) $(INC) $(MACLIB) -o $(NAME)
+endif
 clean:
 	@rm -f $(NAME)
 

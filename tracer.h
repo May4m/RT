@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 15:14:28 by smamba            #+#    #+#             */
-/*   Updated: 2016/08/07 13:52:46 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/08 13:02:30 by simzam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ t_ray			new_ray(t_vec3f origin, t_vec3f dir);
 t_ray			*new_hray(t_vec3f o, t_vec3f dir);
 t_object		new_sphere(t_vec3f pos, t_color s, t_color e,
 		t_f64 rd, t_f64 r);
+t_object		new_cone(t_vec3f pos, t_color s, t_color e, t_f64 rad, t_f64 r);
 t_vec3f			trace_ray(t_ray *ray, t_objects *sp, int depth);
 t_bool			sphere_intersection(t_ray *r, t_object *s, t_f64 *t, t_f64 *a);
 t_bool			intersect_ray(t_ray *r, t_object *s);
@@ -128,8 +129,12 @@ t_vec3f			trace_ray_2(t_ray *ray, t_objects *sp, double depth);
 t_vec3f			sphere_normal(t_vec3f *phit, t_vec3f *pos);
 t_vec3f			cylinder_normal(t_vec3f *phit, t_vec3f *pos);
 t_vec3f			plane_normal(t_vec3f *phit, t_vec3f *pos);
+t_vec3f			cone_normal(t_vec3f *phit, t_vec3f *pos);
 t_bool			solve_quadratic(t_f64 a, t_f64 b, t_f64 c, t_f64 *u, t_f64 *v);
 t_bool			cylinder_intersection(t_ray *r, t_object *s,
 		t_f64 *u, t_f64 *v);
 t_bool			plane_intersection(t_ray *r, t_object *s, t_f64 *t0, t_f64 *t1);
+t_bool			cone_intersection(t_ray *r, t_object *s, double *t0,
+		double *t1);
+t_vec3f			object_normal(t_vec3f *phit, t_object *obj);
 #endif
