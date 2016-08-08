@@ -24,15 +24,25 @@ SRC = main.c \
 
 NAME = rtv1
 
+CC = gcc
+
+INC = -I /usr/include/X11
+
+LIXLIB = -L/usr/lib/X11 -lmlx -lXext -lX11 -lm
+
+MACLIB = -framework AppKit -framework OpenGL -lmlx -lm
+
+VECTOR = -I. -I vector
+
 all: $(NAME)
 
 $(DEBUG): ARGS = -Wall -Werror -Wextra
 
 $(NAME):
 ifeq ($(shell) uname, Linux)
-	@gcc $(SRC) $(ARGS) -I. -I vector -lmlx -lm -o $(NAME)
+		@$(CC) $(ARGS) $(SRC) $(ARGS) $(VECTOR) $(MACLIB) -o $(NAME)
 else
-	@gcc $(SRC) $(ARGS) -I. -framework AppKit -framework OpenGL -I vector -lmlx -lm -o $(NAME)
+		@$(CC) $(ARGS) $(SRC) $(VECTOR) $(INC) $(LIXLIB) -o $(NAME)
 endif
 clean:
 	@rm -f $(NAME)
