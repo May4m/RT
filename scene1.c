@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/31 14:30:48 by smamba            #+#    #+#             */
-/*   Updated: 2016/08/07 16:38:07 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/08 15:18:22 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_objects	*scene_one()
 								new_color(0.0, 0.0, 0.0),
 								3, TRUE);
 	t_object	cyl = new_cylinder(new_vec3f(10, 0, -25),
-									new_color(.2, .9, .3),
+									new_color(.3, .4, .3),
 									new_color(0, 0, 0),
 									3, TRUE);
 	t_object    lig = new_light(new_vec3f(5, 15, -30),

@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 16:18:56 by smamba            #+#    #+#             */
-/*   Updated: 2016/08/08 15:14:58 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/08 15:20:23 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ void	render(t_objects *s, t_gui *env)
 	{
 		while (x < WIDTH)
 		{
-			origin = new_vec3f(0, 0, 0);
+			origin = new_vec3f(0, 17, 16);
 			xx = (2 * ((x++ + 0.5) * (1.0 / WIDTH)) - 1) * angle * ARATIO;
-			yy = (1 - 2 * ((y + 0.5) * (1.0 / HEIGHT))) * angle;
+			yy = (-.7 - 2 * ((y + 0.5) * (1.0 / HEIGHT))) * angle;
 			dir = new_vec3f(xx, yy, -1);
 			ray = new_ray(origin, normal_vec3f(&dir));
 			*pixel++ = trace_ray(&ray, s, 0);
