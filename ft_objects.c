@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 16:37:19 by smamba            #+#    #+#             */
-/*   Updated: 2016/08/07 17:52:28 by simzam           ###   ########.fr       */
+/*   Updated: 2016/08/08 13:09:30 by simzam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,16 @@ t_object	new_sphere(t_vec3f pos, t_color s, t_color e, t_f64 rad, t_f64 r)
 	sp.intersect  = sphere_intersection;
 	sp.normal = sphere_normal;
 	return (sp);
+}
+
+t_object	new_cone(t_vec3f pos, t_color s, t_color e, t_f64 rad, t_f64 r)
+{
+	t_object	cone;
+
+	cone = new_object(pos, s, e, rad, r, CONE);
+	cone.intersect = cone_intersection;
+	cone.normal = cone_normal;
+	return (cone);
 }
 
 t_object	new_plane(t_vec3f pos, t_vec3f size, t_color s, t_f64 ref)

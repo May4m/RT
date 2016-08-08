@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/31 14:30:48 by smamba            #+#    #+#             */
-/*   Updated: 2016/08/07 18:01:11 by simzam           ###   ########.fr       */
+/*   Updated: 2016/08/08 13:14:27 by simzam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_objects	*scene_one()
 {
-	t_objects   *vector = new_stack(9);
+	t_objects   *vector = new_stack(10);
 
 	t_object	sp1	= new_sphere(new_vec3f(0, -10004, -20),
 								 new_color(.30, .31, .32),
@@ -50,6 +50,10 @@ t_objects	*scene_one()
                                 new_color(3, 3, 3), 3);
 	t_object	lig2 = new_light(new_vec3f(-5, 15, -20),
 								 new_color(4, 4, 4), 3);
+	t_object	cone = new_cone(new_vec3f(10, 20, -35),
+								new_color(123, 47, 59),
+								new_color(0, 0, 0),
+								3, TRUE);
 	push_object(vector, &sp1);
 	push_object(vector, &sp2);
 	push_object(vector, &sp3);
@@ -59,5 +63,6 @@ t_objects	*scene_one()
 	push_object(vector, &lig);
 	push_object(vector, &lig2);
 	push_object(vector, &cyl);
+	push_object(vector, &cone);
 	return (vector);
 }
