@@ -80,6 +80,8 @@ typedef struct	s_objects
 	int			size;
 }				t_objects;
 
+typedef t_objects	t_stack;
+
 typedef struct	s_camera
 {
 	t_matrix	view;

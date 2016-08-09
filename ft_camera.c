@@ -29,7 +29,6 @@ t_camera new_look_camera(t_vec3f eye, t_vec3f target, t_vec3f up)
 	set_row(&orientation, (t_f64[4]){yaxis.x, yaxis.y, yaxis.z, 0});
 	set_row(&orientation, (t_f64[4]){zaxis.x, zaxis.y, zaxis.y, 0});
 	set_row(&orientation, (t_f64[4]){0, 0, 0, 1});
-
 	set_row(&translation, (t_f64[4]){1, 0, 0, -eye.x});
 	set_row(&translation, (t_f64[4]){0, 1, 0, -eye.y});
 	set_row(&translation, (t_f64[4]){0, 0, 1, -eye.z});

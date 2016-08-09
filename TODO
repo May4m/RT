@@ -3,17 +3,11 @@ List of things to be done
 
 	1. Add a camera matrix that will position and direction of view of the camera
 
-	2. name refactoring, changing type 't_sphere' to 't_object' to make the code
-	   generic.
-
 	3. Add intersections, Cone, Box and other quadric surfaces
 
 	4. Check for norm errors.
 
 	5. Add different lighting system. Area light, spot light, etc.
 
-	6. Add specular reflections for object shiny effect.
-
 	7. Add soft shadows for a much for realistc shadows
 
-	8. Add the glass effect and different levels of transparency;
