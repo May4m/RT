@@ -88,8 +88,7 @@ t_vec3f	trace_back(t_params p, t_ray *ray, t_objects *sp)
 			light_dir = sub_vec3f(&sp->store[i].pos, &p.phit);
 			light_dir = normal_vec3f(&light_dir);
 			trans = compute_shadows(p, ray, sp, light_dir, i);
-			// there should be a code block for selecting between differnt
-			// shading models here..
+			// there should be a code block for selecting between differnt shading models here..
 			// example...
 			// if (p.shphere.specular)
 			// 		tmp = phong_shading(trans, ray, p, light_dir, sp->store[i].ecolor);
