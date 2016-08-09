@@ -90,7 +90,7 @@ t_vec3f	trace_back(t_params p, t_ray *ray, t_objects *sp)
 			trans = compute_shadows(p, ray, sp, light_dir, i);
 			// there should be a code block for selecting between differnt shading models here..
 			// example...
-			// if (p.shphere.specular)
+			// if (p.shphere.phong == TRUE)
 			// 		tmp = phong_shading(trans, ray, p, light_dir, sp->store[i].ecolor);
 			// else
 			//		tmp = lambertian_shading(trans, light_dir, sp->store[i].ecolor);
