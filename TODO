@@ -3,7 +3,9 @@ List of things to be done
 
 	1. Add a camera matrix that will position and direction of view of the camera
 
-	3. Add intersections, Cone, Box and other quadric surfaces
+	2. Add a generic transformation matrix
+
+	3. Add new intersections Box and other quadric surfaces
 
 	4. Check for norm errors.
 
