@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/25 15:12:59 by smamba            #+#    #+#             */
-/*   Updated: 2016/08/08 17:09:51 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/09 16:08:20 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_vec3f	phong_shading(t_vec3f trans, t_ray *r, t_params p, t_vec3f ld, t_color e
 	// this function has been tested
 	t_color	specular;
 	t_color	diffuse;
-	t_color	ambient;
 	t_color hit_color;
 	t_vec3f	ref;
 	t_vec3f	dir;

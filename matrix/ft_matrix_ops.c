@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 15:48:43 by smamba            #+#    #+#             */
-/*   Updated: 2016/08/07 18:48:09 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/09 16:06:55 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,23 @@ t_matrix	transpose_mat(t_matrix *m)
 
 t_matrix	multiply_mat44(t_matrix *a, t_matrix *b)
 {
-	
+	t_matrix44	mat;
+	int			i;
+	int			j;
+
+	i = 0;
+	mat = new_mat44(0);
+	while (i < a->rows)
+	{
+		j = 0;
+		while (j < a->cols)
+		{
+			mat.mat[i][j] = a->mat[i][j] * b->mat[i][j];
+			j++;
+		}
+		i++;
+	}
+	return (mat);
 }
 
 t_vec3f		vector_multiply(t_vec3f v, t_matrix44 *m)
