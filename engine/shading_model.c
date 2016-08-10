@@ -6,11 +6,11 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/25 15:12:59 by smamba            #+#    #+#             */
-/*   Updated: 2016/07/31 15:50:31 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/08 17:09:51 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tracer.h"
+#include "engine.h"
 
 t_vec3f	defualt_glossy_shading(t_color *ref, t_color *frac,
 	t_f64 feffect, t_object *p)
@@ -25,28 +25,31 @@ t_vec3f	defualt_glossy_shading(t_color *ref, t_color *frac,
 	return (add_vec3f(&scolor, &p->ecolor));
 }
 
-t_vec3f	specular_shading(t_vec3f trans, t_params p, t_vec3f ld, t_color s)
+t_vec3f	phong_shading(t_vec3f trans, t_ray *r, t_params p, t_vec3f ld, t_color e)
 {
-	t_color	rcolor;
-	
-	(void)rcolor;
-	(void)trans;
-	(void)p;
-	(void)ld;
-	(void)s;
-	return (rcolor);
-}
+	// This is a very simple phong model..
+	// I've set experimental values for decent views.
+	// Ks = .2
+	// Kd = .8
+	// albedo = .3
+	// n = 50
+	// this function has been tested
+	t_color	specular;
+	t_color	diffuse;
+	t_color	ambient;
+	t_color hit_color;
+	t_vec3f	ref;
+	t_vec3f	dir;
 
-t_vec3f	phong_shading(t_vec3f trans, t_params p, t_vec3f ld, t_color s)
-{
-	t_color	rcolor;
-	
-	(void)rcolor;
-	(void)trans;
-	(void)p;
-	(void)ld;
-	(void)s;
-	return (rcolor); // return to silence the compiler
+	diffuse = lambertian_shading(trans, p, ld, e);
+	ref = get_reflection_dir(&p.nhit, &ld);
+	dir = r->dir;
+	specular = mat_vec3f(&trans, &e);
+	specular = scale_vec3f(&specular, pow(ftmax(0, dot_vec3f(&ref, &dir)), 250));
+	hit_color = scale_vec3f(&diffuse, .8 * .3);
+	specular = scale_vec3f(&specular, .15);
+	hit_color = add_vec3f(&hit_color, &specular); 
+	return (hit_color);
 }
 
 t_vec3f	lambertian_shading(t_vec3f trans, t_params p, t_vec3f ld, t_color e)

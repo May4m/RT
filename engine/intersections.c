@@ -20,21 +20,22 @@ t_bool	plane_intersection(t_ray *r, t_object *s, t_f64 *t0, t_f64 *t1)
 	t_vec3f	c;
 	t_vec3f	f;
 
-	v_n = normal_vec3f(&s->pos);
+	v_n = s->pos;
 	denom = dot_vec3f(&v_n, &r->dir);
 	if (denom > 1e-6)
 	{
 		f = sub_vec3f(&s->pos, &r->origin);
 		*t1 = dot_vec3f(&f, &v_n) / denom;
+		
+		
 		*t0 = *t1;
 		c = scale_vec3f(&r->dir, *t0);
 		c = add_vec3f(&c, &r->origin);
-		if (!((c.x > s->pos.x) && (c.x < (s->pos.x + 10))))
+		if (!((c.y > s->pos.y) && (c.y < (s->pos.y + s->size.y))))
 			return (FALSE);
-		if (!((c.y > s->pos.y) && (c.y < (s->pos.y + 10))))
-			return (FALSE);
-		if (!((c.x > s->pos.z) && (c.y < (s->pos.y + 10))))
-			return (FALSE);
+		/*
+		if (!((c.z > s->pos.z) && (c.z < (s->pos.z + s->size.z))))
+			return (FALSE);*/
 		return (*t0 >= 0);
 	}
 	return (FALSE);

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tracer.h"
+#include "vector.h"
 
 t_vec3f	sub_vec3f(t_vec3f *v1, t_vec3f *v2)
 {
@@ -46,5 +46,15 @@ t_vec3f	scale_vec3f(t_vec3f *v1, double sk)
 	res.x = v1->x * sk;
 	res.y = v1->y * sk;
 	res.z = v1->z * sk;
+	return (res);
+}
+
+t_vec3f	cross_vec3f(t_vec3f *a, t_vec3f *b)
+{
+	t_vec3f	res;
+
+	res = new_vec3f(a->y * b->z - a->z * b->y,
+					a->z * b->x - a->x * b->z,
+					a->x * b->y - a->y * b->x);
 	return (res);
 }

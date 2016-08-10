@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 16:37:19 by smamba            #+#    #+#             */
-/*   Updated: 2016/07/31 15:40:07 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/07 13:44:45 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_object	new_object(t_vec3f pos, t_color s, t_color e, t_f64 rd, t_f64 r, int t)
 	sp.transparency = 0;
 	sp.reflection = r;
 	sp.type = t;
+	sp.mirror = FALSE;
 	return (sp);
 }
 
@@ -64,5 +65,6 @@ t_object	new_light(t_vec3f pos, t_color s, t_f64 rad)
 	t_object	light;
 
 	light = new_sphere(pos, new_uni_color(0), s, rad, 0);
+	light.type = LIGHT;
 	return (light);
 }

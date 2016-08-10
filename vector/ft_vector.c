@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tracer.h"
+#include "vector.h"
 
 t_vec3f	new_vec3f(double x, double y, double z)
 {
