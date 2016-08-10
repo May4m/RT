@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 15:14:28 by smamba            #+#    #+#             */
-/*   Updated: 2016/08/07 16:54:33 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/10 16:37:02 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <math.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <libft.h>
 # include <mlx.h>
+# include "keys.h"
 # define WIDTH 1000
 # define HEIGHT 700
 # define ARATIO WIDTH / (float)HEIGHT
@@ -90,6 +90,7 @@ typedef struct	s_camera
 	t_vec3f		up;
 	t_f64		fov;
 	t_f64		angle;
+	t_matrix	view;
 }				t_camera;
 
 typedef struct	s_params
@@ -109,9 +110,9 @@ typedef struct  s_interface
 	t_gui		gui;
 }				t_interface;
 
-double			mix(const double a, const double b, const double mix);
-double			ftmin(const double a, const double b);
-double			ftmax(const double a, const double b);
+double			mix(const t_f64 a, const t_f64 b, const t_f64 mix);
+double			ft_min(const t_f64 a, const t_f64 b);
+double			ft_max(const t_f64 a, const t_f64 b);
 t_gui			new_gui(int w, int h, char *title);
 t_objects		*new_stack(int size);
 t_objects		*push_object(t_objects *sps, t_object *s);
@@ -142,7 +143,9 @@ t_bool			plane_intersection(t_ray *r, t_object *s, t_f64 *t0, t_f64 *t1);
 t_camera		new_camera(t_vec3f eye, t_vec3f target, t_vec3f up, t_f64 fov);
 void			paint_mlx(t_vec3f *a, t_gui gui);
 int				expose_handler(t_interface *env);
+void			render_scene(t_interface *env);
 void			run_application(t_interface *env);
 int				onkey_handler(int key, t_interface *env);
 t_interface		init_tracer();
+void			kill_camera(t_camera *m);
 #endif

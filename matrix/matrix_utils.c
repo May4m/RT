@@ -15,7 +15,7 @@ void	print(t_matrix *a)
 		j = 0;
 		while (j < a->cols)
 		{
-			printf("%f\t", a->mat[i][j]);
+			printf("%f ", a->mat[i][j]);
 			j++;
 		}
 		printf("\n");

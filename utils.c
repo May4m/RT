@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/21 10:52:52 by smamba            #+#    #+#             */
-/*   Updated: 2016/07/31 15:50:43 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/10 16:56:06 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ t_bool	solve_quadratic(t_f64 a, t_f64 b, t_f64 c, t_f64 *x0, t_f64 *x1)
 	return (TRUE);
 }
 
-t_f64	mix(t_f64 a, t_f64 b, t_f64 mix) 
-{ 
-    return (b * mix + a * (1 - mix)); 
+t_f64	mix(t_f64 a, t_f64 b, t_f64 mix)
+{
+	return (b * mix + a * (1 - mix));
 }
 
-t_f64	ftmax(const t_f64 a, const t_f64 b)
+t_f64	ft_max(const t_f64 a, const t_f64 b)
 {
-	return (a > b ? a: b);
+	return (a > b ? (a) : (b));
 }
 
-t_f64	ftmin(const t_f64 a, const t_f64 b)
+t_f64	ft_min(const t_f64 a, const t_f64 b)
 {
-	return (a > b ? b: a);
+	return (a > b ? (b) : (a));
 }

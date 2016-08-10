@@ -1,8 +1,18 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   app_environ.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/08/10 16:44:28 by smamba            #+#    #+#             */
+/*   Updated: 2016/08/10 16:45:45 by smamba           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "tracer.h"
 
-t_interface	init_tracer()
+t_interface	init_tracer(void)
 {
 	t_interface	i;
 
@@ -12,8 +22,7 @@ t_interface	init_tracer()
 	return (i);
 }
 
-
-void	cast_ray(int x, int y, t_vec3f *pixel, t_interface *env)
+void		cast_ray(int x, int y, t_vec3f *pixel, t_interface *env)
 {
 	t_vec3f	dir;
 	t_ray	ray;
@@ -28,17 +37,11 @@ void	cast_ray(int x, int y, t_vec3f *pixel, t_interface *env)
 	*pixel = trace_ray(&ray, env->objects, 0);
 }
 
-void	render_scene(t_interface *env)
+void		render_scene(t_interface *env)
 {
 	int		x;
 	int		y;
-	double	xx;
-	double	yy;
-	double	angle;
-	t_ray	ray;
 	t_vec3f	*image;
-	t_vec3f	dir;
-	t_vec3f	origin;
 	t_vec3f	*pixel;
 
 	y = 0;

@@ -27,8 +27,6 @@ void		manual_dispose(t_matrix *m)
 
 void		dispose_garbage()
 {
-	ft_putnbr(g_cnt);
-	ft_putstr(" disposable garbage\n");
 	while (g_cnt > 0)
 	{
 		if (g_garbage[g_cnt].mat != NULL)

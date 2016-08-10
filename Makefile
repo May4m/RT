@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: smamba <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/07/13 13:18:19 by smamba            #+#    #+#              #
-#    Updated: 2016/08/08 15:13:56 by smamba           ###   ########.fr        #
+#    Created: 2016/08/10 16:06:16 by smamba            #+#    #+#              #
+#    Updated: 2016/08/10 16:43:41 by smamba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,18 +29,15 @@ SRC = main.c \
 	  matrix/matrix_utils.c\
 	  matrix/garbage_collector.c\
 	  matrix/matrix_ops2.c
-
 NAME = rtv1
 
-LIBS = minilibx/ -L libft/
 all: $(NAME)
 
 $(DEBUG): ARGS = -Wall -Werror -Wextra
 
 $(NAME):
 	make -C libft/ all
-	@gcc $(SRC) $(ARGS) -I. -I libft/ -L $(LIBS) -I minilibx -I vector \
-			-lft -lmlx -lXext -lm -o $(NAME) -I matrix/
+	@gcc -Wextra -Wall $(SRC) $(ARGS) $(LIBS) -I. -framework AppKit -framework OpenGL -I vector -lmlx -lm -o $(NAME) -I matrix/
 
 clean:
 	make -C libft/ clean

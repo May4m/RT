@@ -6,7 +6,7 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 13:58:05 by smamba            #+#    #+#             */
-/*   Updated: 2016/07/13 14:14:26 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/10 16:52:47 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_gui	new_gui(int w, int h, char *title)
 	gui.title = title;
 	gui.image = mlx_new_image(gui.mlx, w, h);
 	gui.pixel = mlx_get_data_addr(gui.image, &gui.bpp, &gui.sl, &gui.endian);
-	return (gui);	
+	return (gui);
 }
 
 void	paint_mlx(t_vec3f *a, t_gui gui)
@@ -42,9 +42,9 @@ void	paint_mlx(t_vec3f *a, t_gui gui)
 		while (x < WIDTH)
 		{
 			pos = (x * gui.bpp / 8) + (y * gui.sl);
-			gui.pixel[pos] = (unsigned char)(ftmin((t_f64)1.0, a[i].z) * 255);
-			gui.pixel[pos + 1] = (unsigned char)(ftmin((t_f64)1.0, a[i].y) * 255);
-			gui.pixel[pos + 2] = (unsigned char)(ftmin((t_f64)1.0, a[i].x) * 255);
+			gui.pixel[pos] = (unsigned char)(ft_min(1.0, a[i].z) * 255);
+			gui.pixel[pos + 1] = (unsigned char)(ft_min(1.0, a[i].y) * 255);
+			gui.pixel[pos + 2] = (unsigned char)(ft_min(1.0, a[i].x) * 255);
 			i++;
 			x++;
 		}
@@ -53,24 +53,20 @@ void	paint_mlx(t_vec3f *a, t_gui gui)
 	mlx_put_image_to_window(gui.mlx, gui.win, gui.image, 0, 0);
 }
 
-int			expose_handler(t_interface *env)
+int		expose_handler(t_interface *env)
 {
-	char	*fov;
-	char	*width;
-	char	*height;
-
-	fov = ft_strjoin("FOV: ", ft_itoa(30));
 	render_scene(env);
-	mlx_string_put(env->gui.mlx, env->gui.win, 10, 15, 0xff0000, fov);
-	ft_strdel(&fov);
+	mlx_string_put(env->gui.mlx, env->gui.win, 10, 15, 0xff0000, "Rat Tracing");
+	return (0);
 }
 
-int			onkey_handler(int key, t_interface *env)
+int		onkey_handler(int key, t_interface *env)
 {
-	if (key == 65307)
+	if (key == ESC)
 	{
 		kill_stack(&env->objects);
 		dispose_garbage();
 		exit(0);
 	}
+	return (key);
 }

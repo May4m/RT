@@ -6,13 +6,14 @@
 /*   By: smamba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 16:37:19 by smamba            #+#    #+#             */
-/*   Updated: 2016/08/07 13:44:45 by smamba           ###   ########.fr       */
+/*   Updated: 2016/08/10 16:58:08 by smamba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tracer.h"
 
-t_object	new_object(t_vec3f pos, t_color s, t_color e, t_f64 rd, t_f64 r, int t)
+t_object	new_object(t_vec3f pos, t_color s, t_color e,
+		t_f64 rd, t_f64 r, int t)
 {
 	t_object	sp;
 
@@ -34,7 +35,7 @@ t_object	new_sphere(t_vec3f pos, t_color s, t_color e, t_f64 rad, t_f64 r)
 	t_object	sp;
 
 	sp = new_object(pos, s, e, rad, r, SPHERE);
-	sp.intersect  = sphere_intersection;
+	sp.intersect = sphere_intersection;
 	sp.normal = sphere_normal;
 	return (sp);
 }

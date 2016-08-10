@@ -26,29 +26,22 @@ t_bool	plane_intersection(t_ray *r, t_object *s, t_f64 *t0, t_f64 *t1)
 	{
 		f = sub_vec3f(&s->pos, &r->origin);
 		*t1 = dot_vec3f(&f, &v_n) / denom;
-		
-		
 		*t0 = *t1;
 		c = scale_vec3f(&r->dir, *t0);
 		c = add_vec3f(&c, &r->origin);
 		if (!((c.y > s->pos.y) && (c.y < (s->pos.y + s->size.y))))
 			return (FALSE);
-		/*
-		if (!((c.z > s->pos.z) && (c.z < (s->pos.z + s->size.z))))
-			return (FALSE);*/
 		return (*t0 >= 0);
 	}
 	return (FALSE);
 }
 
-t_bool	cylinder_intersection(t_ray *r, t_object *s, double *t0, double *t1)
+t_bool	cylinder_intersection(t_ray *r, t_object *s, t_f64 *t0, t_f64 *t1)
 {
 	t_vec3f	diff;
 	t_vec3f	dir;
 	t_f64	b;
 	t_f64	c;
-	t_f64	y0;
-	t_f64	y1;
 
 	dir = r->dir;
 	diff = sub_vec3f(&r->origin, &s->pos);
@@ -61,7 +54,7 @@ t_bool	cylinder_intersection(t_ray *r, t_object *s, double *t0, double *t1)
 	return (TRUE);
 }
 
-t_bool	sphere_intersection(t_ray *r, t_object *s, double *t0, double *t1)
+t_bool	sphere_intersection(t_ray *r, t_object *s, t_f64 *t0, t_f64 *t1)
 {
 	t_vec3f	diff;
 	float	tca;
